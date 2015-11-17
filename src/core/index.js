@@ -5,7 +5,7 @@ global.Spinner = require('spin.js');
 
 let angular = require('angular');
 
-require('../../../fonts/spinnaker/icons.css');
+require('../fonts/spinnaker/icons.css');
 
 require('Select2');
 require('jquery-ui');

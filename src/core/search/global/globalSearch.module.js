@@ -1,6 +1,6 @@
 'use strict';
 
-require('../../../../../fonts/spinnaker/icons.css');
+require('../../../fonts/spinnaker/icons.css');
 require('./globalSearch.less');
 
 let angular = require('angular');

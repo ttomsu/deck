@@ -27,5 +27,6 @@
     "jasmine": true,
   },
   "globals": {
+    "__DEFAULT_TIME_ZONE__": true,
   }
 }
