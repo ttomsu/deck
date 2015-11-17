@@ -5,7 +5,7 @@ var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 //var webpack = require('webpack');
 //var IgnorePlugin = require("webpack/lib/IgnorePlugin");
 var path = require('path');
-
+var webpack = require('webpack');
 var nodeModulePath = path.join(__dirname, 'node_modules');
 //var bowerModulePath = path.join(__dirname, 'bower_components');
 
@@ -78,6 +78,9 @@ module.exports = {
       favicon: 'app/favicon.ico',
       inject: true,
     }),
+    new webpack.DefinePlugin({
+      __DEFAULT_TIME_ZONE__: process.env.TIME_ZONE || 'America/Los_Angeles',
+    })
   ],
   devServer: {
     port: process.env.DECK_PORT || 9000,

@@ -29,6 +29,7 @@ templates.keys().forEach(function(key) {
 
 module.exports = angular
   .module('spinnaker.core', [
+    require('./config'),
     require('angular-animate'),
     require('angular-messages'),
     require('angular-sanitize'),

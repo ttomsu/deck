@@ -14,19 +14,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './node_modules/jquery/dist/jquery.js',
-      './node_modules/angular/angular.js',
-      './node_modules/angular-mocks/angular-mocks.js',
-      './node_modules/phantomjs-polyfill/bind-polyfill.js',
-      //'app/**/*.spec.js',
-      'settings.js',
-      'test/test_index.js'
+      '../node_modules/jquery/dist/jquery.js',
+      '../node_modules/angular/angular.js',
+      '../node_modules/angular-mocks/angular-mocks.js',
+      '../node_modules/phantomjs-polyfill/bind-polyfill.js',
+      //'./**/*.spec.js',
+      //'settings.js',
+      '../test/test_index.js'
     ],
 
     preprocessors: {
-      //'app/**/*.spec.js': ['webpack'],
+      './**/*.spec.js': ['webpack'],
       'settings.js': ['webpack'],
-      'test/test_index.js': ['webpack'],
+      '../test/test_index.js': ['webpack'],
     },
 
     webpack: {
@@ -62,13 +62,13 @@ module.exports = function(config) {
             loader: 'json-loader'
           },
         ],
-        postLoaders: [
-          {
-            test: /\.js$/,
-            exclude: /(test|node_modules|bower_components)\//,
-            loader: 'istanbul-instrumenter'
-          }
-        ]
+        //postLoaders: [
+        //  {
+        //    test: /\.js$/,
+        //    exclude: /(test|node_modules|bower_components)\//,
+        //    loader: 'istanbul-instrumenter'
+        //  }
+        //]
       },
       watch: true,
     },
@@ -114,17 +114,17 @@ module.exports = function(config) {
     logLevel: config.DEBUG,
 
     // jUnit Report output
-    reporters: ['progress', 'mocha', 'coverage'],
+    reporters: ['progress', 'mocha'],
 
     // the default configuration
     junitReporter: {
       outputFile: 'test-results.xml'
     },
 
-    coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
-    },
+    //coverageReporter: {
+    //  type : 'html',
+    //  dir : 'coverage/'
+    //},
 
     jenkinsReporter: {
       outputFile: 'test-results.xml',

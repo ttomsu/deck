@@ -12,5 +12,10 @@ module.exports = angular.module('netflix.spinnaker', [
   require('./amazon'),
   require('./google'),
   require('./cloudfoundry'),
-  require('./titan'),
-]).name;
+  require('./titan')
+])
+.config(function(defaultTimeZoneProvider) {
+  defaultTimeZoneProvider.set(__DEFAULT_TIME_ZONE__);
+})
+.name;
+

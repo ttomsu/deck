@@ -45,7 +45,7 @@
   "scripts": {
     "build": "node ./node_modules/webpack/bin/webpack.js",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --devtool eval",
-    "test": "./node_modules/karma/bin/karma start",
+    "test": "./node_modules/karma/bin/karma start ./src/karma.conf.js ",
     "preinstall": "npm install -g bower@1.4.1",
     "int": "protractor protractor.conf.js"
   },
