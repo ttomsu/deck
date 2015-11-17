@@ -1,0 +1,50 @@
+<div ng-controller="gceBakeStageCtrl as bakeStageCtrl">
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Package</b>
+      <help-field key="pipeline.config.bake.package"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.package"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 col-md-offset-1 sm-label-left">Base OS</label>
+
+    <div class="col-md-6">
+      <label class="radio-inline" ng-repeat="baseOsOption in baseOsOptions">
+        <input type="radio"
+               ng-model="stage.baseOs"
+               ng-value="baseOsOption"/>
+        {{baseOsOption}}
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 col-md-offset-1 sm-label-left">Base Label</label>
+
+    <div class="col-md-6">
+      <label class="radio-inline" ng-repeat="baseLabel in baseLabelOptions">
+        <input type="radio"
+               ng-model="stage.baseLabel"
+               ng-value="baseLabel"/>
+        {{baseLabel}}
+      </label>
+    </div>
+  </div>
+
+  <!-- Even if the rebakeControlEnabled flag is false, we should show the control if rebake is set. -->
+  <div class="form-group row" ng-if="viewState.rebakeControlEnabled || stage.rebake">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">Rebake</div>
+    <div class="col-sm-6 checkbox" style="margin-bottom: 0">
+      <label>
+        <input type="checkbox"
+               ng-model="stage.rebake">
+        </input>
+        Rebake image without regard to the status of any existing bake
+      </label>
+    </div>
+  </div>
+</div>

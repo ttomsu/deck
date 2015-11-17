@@ -1,0 +1,38 @@
+<div class="pod-subgroup clickable clickable-row clearfix"
+     waypoint="{{waypoint}}"
+     ng-click="loadDetails($event)"
+     ng-class="{active: $state.includes('**.securityGroupDetails', {region: securityGroup.region, accountId: securityGroup.accountName, name: securityGroup.name, vpcId: securityGroup.vpcId, provider: securityGroup.provider})}">
+
+  <h6 sticky-header added-offset-height="39">
+    <span class="glyphicon glyphicon-transfer"></span> {{securityGroup.region | uppercase}}
+  </h6>
+
+  <div class="cluster-container">
+    <div class="rollup-details-section col-md-6" ng-if="sortFilter.showServerGroups">
+      <div ng-if="!securityGroup.usages.serverGroups.length" class="small">
+        No server groups
+      </div>
+      <div ng-repeat="serverGroup in securityGroup.usages.serverGroups | orderBy:'-name'"
+           class="rollup-row" ng-class="{disabled: serverGroup.isDisabled}">
+        <a
+            ui-sref=".serverGroup({region: securityGroup.region, accountId: securityGroup.account, serverGroup: serverGroup.name, provider: securityGroup.provider})"
+            ui-sref-active="active">
+          <span class="icon icon-server-group icon-{{securityGroup.provider}} small"></span> {{serverGroup.name}}
+        </a>
+      </div>
+    </div>
+    <div class="rollup-details-section col-md-6" ng-if="sortFilter.showLoadBalancers">
+      <div ng-if="!securityGroup.usages.loadBalancers.length" class="small">
+        No load balancers
+      </div>
+      <div ng-repeat="loadBalancer in securityGroup.usages.loadBalancers | orderBy:'-name'"
+           class="rollup-row">
+        <a
+            ui-sref=".loadBalancerDetails({region: securityGroup.region, accountId: securityGroup.account, name: loadBalancer.name, vpcId: securityGroup.vpcId, provider: securityGroup.provider})"
+            ui-sref-active="active">
+          <span class="icon icon-elb"></span> {{loadBalancer.name}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

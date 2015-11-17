@@ -1,0 +1,87 @@
+<div ng-if="viewState.loading">
+  <h4 ng-if="viewState.loading" class="text-center">
+    <span us-spinner="{radius:20, width:6, length: 12}"></span>
+  </h4>
+</div>
+<div class="form-horizontal" ng-if="!viewState.loading">
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Script Path</b>
+      <help-field key="pipeline.config.script.path"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.scriptPath"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Command</b>
+      <help-field key="pipeline.config.script.command"></help-field>
+    </div>
+    <div class="col-md-6">
+      <textarea class="form-control input-sm"
+             ng-model="stage.command"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Output File</b>
+      <help-field key="pipeline.config.script.propertyFile"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.propertyFile"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Image</b>
+      <help-field key="pipeline.config.script.image"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.image"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Account</b>
+      <help-field key="pipeline.config.script.account"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.account"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Region</b>
+      <help-field key="pipeline.config.script.region"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.region"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Cluster</b>
+      <help-field key="pipeline.config.script.cluster"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.cluster"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2 col-md-offset-1 sm-label-left">
+      <b>Cmc</b>
+      <help-field key="pipeline.config.script.cmc"></help-field>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control input-sm"
+             ng-model="stage.cmc"/>
+    </div>
+  </div>
+</div>
