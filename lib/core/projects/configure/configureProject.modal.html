@@ -1,0 +1,14 @@
+<modal-wizard heading="Configure Project">
+  <wizard-page key="config" label="Project Attributes" hide-subheading="true">
+    <ng-include src="ctrl.pages.config"></ng-include>
+  </wizard-page>
+  <wizard-page key="applications" label="Applications">
+    <ng-include src="ctrl.pages.applications"></ng-include>
+  </wizard-page>
+  <wizard-page key="clusters" label="Clusters">
+    <ng-include src="ctrl.pages.clusters"></ng-include>
+  </wizard-page>
+  <wizard-page key="pipelines" label="Pipelines" mandatory="false">
+    <ng-include src="ctrl.pages.pipelines"></ng-include>
+  </wizard-page>
+</modal-wizard>
