@@ -1,75 +1,41 @@
 'use strict';
 
-var webpackConf = require('./webpack.config.js');
+var path = require('path');
+var sharedConfig = require(
+  path.join(__dirname, 'webpack.sharedConfig.js')
+);
 
 module.exports = function(config) {
   config.set({
     autoWatch: true,
-
-    // base path, that will be used to resolve files and exclude
     basePath: '',
-
-    // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
     files: [
-      '../node_modules/jquery/dist/jquery.js',
-      '../node_modules/angular/angular.js',
-      '../node_modules/angular-mocks/angular-mocks.js',
-      '../node_modules/phantomjs-polyfill/bind-polyfill.js',
-      //'./**/*.spec.js',
-      //'settings.js',
-      '../test/test_index.js'
+      path.join(
+        sharedConfig.nodeModulesPath, 'jquery', 'dist', 'jquery.js'
+      ),
+      path.join(
+        sharedConfig.nodeModulesPath, 'angular', 'angular.js'
+      ),
+      path.join(
+        sharedConfig.nodeModulesPath, 'angular-mocks', 'angular-mocks.js'
+      ),
+      path.join(
+        sharedConfig.nodeModulesPath, 'phantomjs-polyfill', 'bind-polyfill.js'
+      ),
+      path.join(
+        __dirname, 'test_index.js'
+      ),
     ],
 
     preprocessors: {
       './**/*.spec.js': ['webpack'],
       'settings.js': ['webpack'],
-      '../test/test_index.js': ['webpack'],
+      './test_index.js': ['webpack'],
     },
 
     webpack: {
-      module: {
-        loaders: [
-          {
-            test: /jquery\.js$/,
-            loader: 'expose?jQuery',
-          },
-          {
-            test: /\.css$/,
-            loader: 'style!css',
-          },
-          {
-            test: /\.js$/,
-            loader: 'babel',
-            exclude: /node_modlules/,
-          },
-          {
-            test: /\.less$/,
-            loader: 'style!css!less',
-          },
-          {
-            test: /\.(woff|otf|ttf|eot|svg|png|gif)(.*)?$/,
-            loader: 'file',
-          },
-          {
-            test: /\.html$/,
-            loader: 'ngtemplate?relativeTo=' + __dirname + '/!html'
-          },
-          {
-            test: /\.json$/,
-            loader: 'json-loader'
-          },
-        ],
-        //postLoaders: [
-        //  {
-        //    test: /\.js$/,
-        //    exclude: /(test|node_modules|bower_components)\//,
-        //    loader: 'istanbul-instrumenter'
-        //  }
-        //]
-      },
+      module: sharedConfig.module,
       watch: true,
     },
 
@@ -81,7 +47,6 @@ module.exports = function(config) {
       require('karma-webpack'),
       require('karma-jasmine'),
       require('karma-phantomjs-launcher'),
-      //require('karma-chrome-launcher'),
       require('karma-junit-reporter'),
       require('karma-mocha-reporter'),
       require('karma-jenkins-reporter'),
