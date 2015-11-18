@@ -7,7 +7,8 @@ var sharedConfig = require(path.join(__dirname, '..', 'webpack.sharedConfig.js')
 var webpack = require('webpack');
 
 module.exports = {
-  debug: true,
+  debug: sharedConfig.debug,
+  devtool: sharedConfig.devtool,
   entry: path.join(__dirname, 'index.js'),
   output: {
     path: path.join(__dirname, 'build', 'webpack', process.env.SPINNAKER_ENV || ''),

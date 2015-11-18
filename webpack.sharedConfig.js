@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = {
   debug: true,
+  devtool: 'eval',
   module: {
     loaders: [
       {
