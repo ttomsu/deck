@@ -8,16 +8,16 @@ describe('Service: whatsNew reader ', function () {
     )
   );
 
-  beforeEach(window.inject(function(whatsNewReader, $httpBackend, settings) {
+  beforeEach(window.inject(function(whatsNewReader, $httpBackend, whatsNew) {
     this.reader = whatsNewReader;
     this.$http = $httpBackend;
-    this.settings = settings;
+    this.whatsNew = whatsNew;
   }));
 
   describe('getContents', function() {
 
     beforeEach(function() {
-      var gistId = this.settings.whatsNew.gistId;
+      var gistId = this.whatsNew.gistId();
       this.url = ['https://api.github.com/gists/', gistId].join('');
     });
 
@@ -29,7 +29,7 @@ describe('Service: whatsNew reader ', function () {
             files: {},
           };
 
-      response.files[this.settings.whatsNew.fileName] = {
+      response.files[this.whatsNew.fileName()] = {
         content: 'expected content',
       };
 

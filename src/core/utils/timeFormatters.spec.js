@@ -1,6 +1,6 @@
 'use strict';
 
-fdescribe('Filter: timeFormatters', function() {
+describe('Filter: timeFormatters', function() {
 
   beforeEach(
     window.module(

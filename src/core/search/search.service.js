@@ -3,9 +3,10 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.search.service', [
-  require('../cache/deckCacheFactory.js')
+  require('../cache/deckCacheFactory.js'),
+  require('../config/apiHost'),
 ])
-  .factory('searchService', function($q, $http, $log, settings) {
+  .factory('searchService', function($q, $http, $log, apiHost) {
 
     var defaultPageSize = 500;
 
@@ -19,9 +20,9 @@ module.exports = angular.module('spinnaker.core.search.service', [
       };
 
       return $http({
-        url: settings.gateUrl + '/search',
+        url: apiHost.host() + '/search',
         params: angular.extend(defaultParams, params),
-        timeout: settings.pollSchedule * 2 + 5000, // TODO: replace with apiHost call
+        timeout: apiHost.getPollSchedule() * 2 + 5000, // TODO: replace with apiHost call
       })
         .then(
           function(response) {

@@ -9,7 +9,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
   require('./executions.transformer.service.js')
 ])
   .factory('executionService', function($stateParams, $http, $timeout, $q, $log,
-                                         scheduler, settings, appendTransform, executionsTransformer) {
+                                         scheduler, settings, appendTransform, executionsTransformer, apiHost) {
 
     const activeStatuses = ['RUNNING', 'SUSPENDED', 'NOT_STARTED'];
 
@@ -27,7 +27,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
       $http({
         method: 'GET',
         url: url,
-        timeout: settings.pollSchedule * 2 + 5000, // TODO: replace with apiHost call
+        timeout: apiHost.getPollSchedule() * 2 + 5000, // TODO: replace with apiHost call
       }).then(
         function(resp) {
           deferred.resolve(resp.data);

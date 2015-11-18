@@ -128,9 +128,9 @@ module.exports = angular
 
     require('./validation/validation.module.js'),
   ])
-  .run(function($rootScope, $log, $state, settings) {
+  .run(function($rootScope, $log, $state, featureFlagProvider) {
 
-    $rootScope.feature = settings.feature;
+    $rootScope.feature = featureFlagProvider.getAll();
 
     $rootScope.$state = $state; // TODO: Do we really need this?
 
@@ -193,9 +193,9 @@ module.exports = angular
     $modalProvider.options.backdrop = 'static';
     $modalProvider.options.keyboard = false;
   })
-  .config(function(RestangularProvider, settings) {
+  .config(function(RestangularProvider, settings, apiHostProvider ) {
     RestangularProvider.setBaseUrl(settings.gateUrl);
-    RestangularProvider.setDefaultHttpFields({timeout: settings.pollSchedule * 2 + 5000}); // TODO: replace with apiHost call
+    RestangularProvider.setDefaultHttpFields({timeout: apiHostProvider.getPollSchedule() * 2 + 5000}); // TODO: replace with apiHost call
   })
   .config(function($httpProvider){
     $httpProvider.defaults.headers.patch = {
