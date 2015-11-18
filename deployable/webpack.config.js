@@ -3,7 +3,9 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var path = require('path');
-var sharedConfig = require(path.join(__dirname, '..', 'webpack.sharedConfig.js'));
+var sharedConfig = require(
+  path.join(__dirname, '..', 'webpack.sharedConfig.js')
+);
 var webpack = require('webpack');
 
 module.exports = {
@@ -17,15 +19,15 @@ module.exports = {
   module: sharedConfig.module,
   resolve: {
     root: [
-      path.join(__dirname, '..', 'node_modules'),
-      path.join(__dirname, '..', 'bower_components'),
+      sharedConfig.nodeModulesPath,
+      sharedConfig.bowerComponentsPath,
     ],
     alias: {
       'core': path.join(__dirname, '..', 'src'),
     }
   },
   resolveLoader: {
-    root: path.join(__dirname, '..', 'node_modules'),
+    root: sharedConfig.nodeModulesPath,
   },
   plugins: [
     new HtmlWebpackPlugin({

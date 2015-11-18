@@ -2,17 +2,16 @@
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-//var webpack = require('webpack');
-//var IgnorePlugin = require("webpack/lib/IgnorePlugin");
 var path = require('path');
 var webpack = require('webpack');
-var nodeModulePath = path.join(__dirname, 'node_modules');
-//var bowerModulePath = path.join(__dirname, 'bower_components');
+var sharedConfig = require(
+  path.join(__dirname, '..', 'webpack.sharedConfig.js')
+);
 
 module.exports = {
-  debug: true,
+  debug: sharedConfig.debug,
+  devtool: sharedConfig.devtool,
   entry: {
-    //settings: './settings.js',
     app: './index.js',
   },
   output: {
@@ -20,45 +19,12 @@ module.exports = {
     filename: '[name].js',
 
   },
-  module: {
-
-    //noParse: [
-    //  /\.spec\.js$/,
-    //],
-    loaders: [
-      {
-        test: /jquery\.js$/,
-        loader: 'expose?jQuery',
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css',
-      },
-      {
-        test: /\.js$/,
-        loader: 'ng-annotate!babel!envify!eslint',
-        exclude: /node_modules(?!\/clipboard)/,
-      },
-      {
-        test: /\.less$/,
-        loader: 'style!css!less',
-      },
-      {
-        test: /\.(woff|otf|ttf|eot|svg|png|gif|ico)(.*)?$/,
-        loader: 'file',
-      },
-      {
-        test: /\.html$/,
-        loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname))  + '/!html'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      }
-    ],
-  },
+  module: sharedConfig.module,
   resolve: {
-    //root: [nodeModulePath, bowerModulePath],
+    root: [
+      sharedConfig.nodeModulesPath,
+      sharedConfig.bowerComponentsPath,
+    ],
     alias: {
       //lodash: 'utils/lodash.js'
       //angular: 'imports?window={}!exports?window.angular!angular/angular.js',
@@ -66,7 +32,7 @@ module.exports = {
     }
   },
   resolveLoader: {
-    root: nodeModulePath
+    root: sharedConfig.nodeModulesPath,
   },
   plugins: [
     new CommonsChunkPlugin(

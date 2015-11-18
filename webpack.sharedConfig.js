@@ -1,6 +1,8 @@
 var path = require('path');
 
 module.exports = {
+  nodeModulesPath: path.join(__dirname, 'node_modules'),
+  bowerComponentsPath: path.join(__dirname, 'bower_modules'),
   debug: true,
   devtool: 'eval',
   module: {
