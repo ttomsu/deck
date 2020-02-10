@@ -72,7 +72,16 @@ export class ImageList extends React.Component<IServerGroupHeaderProps, IImageLi
   }
 
   public render() {
-    const images = this.props.images.sort();
+    const shorten = function(val: string): string {
+      const sha = val.lastIndexOf('sha256:');
+      if (sha > 0) {
+        // 14 = "sha256:" + 7 characters of hash
+        return val.substr(0, sha + 14) + '...';
+      }
+      return val;
+    };
+
+    const images = this.props.images.map(val => shorten(val)).sort();
     const { collapsed } = this.state;
     const buttonStyle = {
       padding: 0,
