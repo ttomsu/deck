@@ -76,7 +76,7 @@ export class ImageList extends React.Component<IServerGroupHeaderProps, IImageLi
       const sha = val.lastIndexOf('sha256:');
       if (sha > 0) {
         // 14 = "sha256:" + 7 characters of hash
-        return val.substr(0, sha + 14) + '...';
+        return val.substring(0, sha + 14) + '...';
       }
       return val;
     };
